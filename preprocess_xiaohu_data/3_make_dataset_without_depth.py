@@ -1,4 +1,5 @@
 from PIL import Image
+import PIL
 import glob
 import numpy as np
 import os
@@ -22,9 +23,9 @@ for mode in ['/train', '/val']:
 	tt = source_mode + '2'
 	files = glob.glob(sem_label_path)
 	for file in tqdm.tqdm(files):
-		sem = np.array(Image.open(file))
-		dep = np.array(Image.open(file.replace(ss, tt).replace('_pred_sem_label', '_proj_dis')).convert('L'))
-		rgb = np.array(Image.open(file.replace(ss, tt).replace('_pred_sem_label', '_street_rgb')))
+		sem = np.array(Image.open(file).resize((512, 256), PIL.Image.BILINEAR))
+		dep = np.array(Image.open(file.replace(ss, tt).replace('_pred_sem_label', '_proj_dis')).convert('L').resize((512, 256), PIL.Image.BILINEAR))
+		rgb = np.array(Image.open(file.replace(ss, tt).replace('_pred_sem_label', '_street_rgb')).resize((512, 256), PIL.Image.BILINEAR))
 		info = rgb.copy()
 		for i in range(5):
 			info[sem == i] = two_dim[i]
