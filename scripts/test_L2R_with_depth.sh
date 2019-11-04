@@ -4,8 +4,8 @@ CLASS="L2R_Bicycle_Depth"
 
 # models
 RESULTS_DIR="./results/L2R"
-G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_G.pth"
-E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_E.pth"
+G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/"${CLASS}"/latest_net_G.pth"
+E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/"${CLASS}"/latest_net_E.pth"
 CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
 
 # dataset
