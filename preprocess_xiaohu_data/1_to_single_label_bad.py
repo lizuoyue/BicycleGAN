@@ -12,7 +12,7 @@ colors = [
 	[243,  36, 232], # sidewalk
 ]
 
-for mode in ['train', 'test']:
+for mode in ['train']:
 	dataset_dir = '/home/zoli/xiaohu_new_data/predict_of_%s' % mode
 	files = glob.glob(dataset_dir + '/*_pred_sem.png')
 	for file in tqdm.tqdm(files):
