@@ -4,7 +4,7 @@ import random
 
 dataset_dir = '/home/zoli/xiaohu_new_data/train2'
 files = glob.glob(dataset_dir + '/*_sate_label.png')
-names = [os.path.basename(item).replace('.png', '') for item in files]
+names = [os.path.basename(item).replace('_sate_label.png', '') for item in files]
 random.seed(7)
 random.shuffle(names)
 with open('test.txt', 'w') as f:
