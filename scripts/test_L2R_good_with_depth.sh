@@ -1,18 +1,20 @@
 set -ex
 
-CLASS="L2R_Bicycle_No_Depth"
+CLASS="L2R_with_depth"
 
 # models
-RESULTS_DIR="./results/L2R_No_Depth"
+RESULTS_DIR="./results/L2R"
 G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_G.pth"
 E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_E.pth"
 CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
 
 # dataset
 DIRECTION="AtoB" # from domain A to domain B
-LOAD_SIZE=512 # scale images to this size
-CROP_SIZE=256 # then crop to this size
-INPUT_NC=3  # number of channels in the input image
+LOAD_SIZE_W=512
+LOAD_SIZE_H=65536 # doesn't matter
+CROP_SIZE_W=512
+CROP_SIZE_H=256
+INPUT_NC=3 # number of channels in the input image
 NZ=32
 PREPROCESS="scale_width_and_crop"
 
@@ -37,8 +39,10 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test.py \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --name ${CLASS} \
   --direction ${DIRECTION} \
-  --load_size ${LOAD_SIZE} \
-  --crop_size ${CROP_SIZE} \
+  --load_size_w ${LOAD_SIZE_W} \
+  --load_size_h ${LOAD_SIZE_H} \
+  --crop_size_w ${CROP_SIZE_W} \
+  --crop_size_h ${CROP_SIZE_H} \
   --input_nc ${INPUT_NC} \
   --preprocess ${PREPROCESS} \
   --nz ${NZ} \

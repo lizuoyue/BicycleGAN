@@ -45,6 +45,6 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
             names.append('random_sample%2.2d' % nn)
 
     img_path = 'input_%3.3d' % i
-    save_images(webpage, images, names, img_path, aspect_ratio=opt.aspect_ratio, width=opt.crop_size)
+    save_images(webpage, images, names, img_path, aspect_ratio=opt.aspect_ratio, width=opt.crop_size_w)
 
 webpage.save()

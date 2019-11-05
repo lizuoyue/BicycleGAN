@@ -6,9 +6,11 @@ BATCH_SIZE=4
 NZ=32
 NO_FLIP=''
 DIRECTION='AtoB'
-LOAD_SIZE=512
+LOAD_SIZE_W=512
+LOAD_SIZE_H=65536 # doesn't matter
 PREPROCESS='scale_width_and_crop'
-CROP_SIZE=256
+CROP_SIZE_W=512
+CROP_SIZE_H=256
 INPUT_NC=3
 NITER=200
 NITER_DECAY=200
@@ -32,9 +34,11 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --direction ${DIRECTION} \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --batch_size ${BATCH_SIZE} \
-  --load_size ${LOAD_SIZE} \
+  --load_size_w ${LOAD_SIZE_W} \
+  --load_size_h ${LOAD_SIZE_H} \
   --preprocess ${PREPROCESS} \
-  --crop_size ${CROP_SIZE} \
+  --crop_size_w ${CROP_SIZE_W} \
+  --crop_size_h ${CROP_SIZE_H} \
   --nz ${NZ} \
   --ngf ${NGF} \
   --nef ${NEF} \
