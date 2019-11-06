@@ -30,7 +30,7 @@ if __name__=='__main__':
 	netE = networks.define_E(opt.output_nc, opt.nz, opt.nef, netE=opt.netE, norm=opt.norm, nl=opt.nl,
 							init_type=opt.init_type, init_gain=opt.init_gain, gpu_ids=opt.gpu_ids, vaeLike=opt.use_vae)
 	criterionL1 = torch.nn.L1Loss()
-	optimizer_E = torch.optim.Adam(netE.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
+	optimizer = torch.optim.Adam(netE.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
 
 	transforms = torchvision.transforms.Compose([
 		torchvision.transforms.ToTensor(),
