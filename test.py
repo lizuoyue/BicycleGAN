@@ -26,7 +26,7 @@ webpage = html.HTML(web_dir, 'Training = %s, Phase = %s, Class =%s' % (opt.name,
 
 # sample random z
 if opt.sync:
-    z_samples = model.get_z_random(opt.n_samples + 1, opt.nz)
+    z_samples = model.get_z_random(opt.n_samples + 1, opt.nz, 7)
 
 # test stage
 for i, data in enumerate(islice(dataset, opt.num_test)):

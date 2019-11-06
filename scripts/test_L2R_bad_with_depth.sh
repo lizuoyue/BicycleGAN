@@ -1,9 +1,9 @@
 set -ex
 
-CLASS="L2R_good_with_depth"
+CLASS="L2R_bad_with_depth"
 
 # models
-RESULTS_DIR="./results/L2R_good_with_depth"
+RESULTS_DIR="./results/L2R_bad_with_depth"
 G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_G.pth"
 E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_E.pth"
 CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"

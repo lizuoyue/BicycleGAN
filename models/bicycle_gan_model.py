@@ -71,7 +71,9 @@ class BiCycleGANModel(BaseModel):
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
 
-    def get_z_random(self, batch_size, nz, random_type='gauss'):
+    def get_z_random(self, batch_size, nz, random_type='gauss', seed=None):
+        if seed is not None:
+            torch.manual_seed(seed)
         if random_type == 'uni':
             z = torch.rand(batch_size, nz) * 2.0 - 1.0
         elif random_type == 'gauss':
@@ -88,7 +90,10 @@ class BiCycleGANModel(BaseModel):
     def test(self, z0=None, encode=False):
         with torch.no_grad():
             if encode:  # use encoded z
-                z0, _ = self.netE(self.real_B[..., :-1])
+                if self.real_B.size(3) > 511:
+                    z0, _ = self.netE(self.real_B[..., :511])
+                else:
+                    z0, _ = self.netE(self.real_B)
             if z0 is None:
                 z0 = self.get_z_random(self.real_A.size(0), self.opt.nz)
             self.fake_B = self.netG(self.real_A, z0)
