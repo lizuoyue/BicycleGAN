@@ -1,20 +1,22 @@
 import os
 from options.train_options import TrainOptions
+from options.test_options import TestOptions
 from data import create_dataset
 from models import create_model
 
 # options
-opt = TrainOptions().parse()
-opt.num_threads = 1   # test code only supports num_threads=1
-opt.batch_size = 1   # test code only supports batch_size=1
-opt.serial_batches = True  # no shuffle
+testOpt = TestOptions().parse()
+trainOpt = TrainOptions().parse()
+trainOpt.num_threads = 1   # test code only supports num_threads=1
+trainOpt.batch_size = 1   # test code only supports batch_size=1
+trainOpt.serial_batches = True  # no shuffle
 
 # create dataset
-dataset = create_dataset(opt)
-model = create_model(opt)
-model.setup(opt)
+dataset = create_dataset(trainOpt)
+model = create_model(testOpt)
+model.setup(testOpt)
 model.eval()
-print('Loading model %s' % opt.model)
+print('Loading model %s' % testOpt.model)
 
 # test stage
 for i, data in enumerate(dataset):
