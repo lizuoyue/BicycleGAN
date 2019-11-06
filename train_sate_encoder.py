@@ -61,7 +61,7 @@ if __name__=='__main__':
 		z_target = torch.from_numpy(z_target).to(opt.device)
 		sate_rgb = [transforms(Image.open(paths[choose[j]])) for j in range(opt.batch_size)]
 		sate_rgb = torch.stack(sate_rgb).to(opt.device)
-		z_pred = netE(sate_rgb)
+		z_pred, _ = netE(sate_rgb)
 
 		print(z_target.shape)
 		print(z_pred.shape)
