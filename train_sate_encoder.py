@@ -23,7 +23,7 @@ class option(object):
 		self.beta1 = 0.5
 		self.device = torch.device('cuda:{}'.format(self.gpu_ids[0])) if self.gpu_ids else torch.device('cpu')
 		self.batch_size = 4
-		self.epoch = 400
+		self.epoch = 100
 		return
 
 if __name__=='__main__':
