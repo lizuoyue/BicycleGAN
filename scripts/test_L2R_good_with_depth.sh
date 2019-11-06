@@ -23,9 +23,9 @@ NEF=96
 NDF=96
 
 LATEST_DIR=${CHECKPOINTS_DIR}"/"${CLASS}
-# mkdir -p ${LATEST_DIR}
-# cp ${G_PATH} ${LATEST_DIR}
-# cp ${E_PATH} ${LATEST_DIR}
+mkdir -p ${LATEST_DIR}
+cp ${G_PATH} ${LATEST_DIR}
+cp ${E_PATH} ${LATEST_DIR}
 
 # misc
 GPU_ID=0   # gpu id
