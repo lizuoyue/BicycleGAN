@@ -29,7 +29,7 @@ if __name__=='__main__':
 	criterionL1 = torch.nn.L1Loss()
 	optimizer_E = torch.optim.Adam(netE.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
 
-	a = torch.ones(1, 3, 255, 511)
+	a = torch.ones(1, 3, 256, 511)
 	z, _ = netE(a)
 	print(z.shape)
 
