@@ -74,8 +74,8 @@ if __name__=='__main__':
 		}
 
 		if i % 5000 == 0:
-			torch.save(checkpoint, 'sate_encoder_%d.pth' % int(i / 5000))
-			torch.save(checkpoint, 'sate_encoder_latest.pth')
+			torch.save(checkpoint, './sate_encoder/sate_encoder_%d.pth' % int(i / 5000))
+			torch.save(checkpoint, './sate_encoder/sate_encoder_latest.pth')
 
 
 
