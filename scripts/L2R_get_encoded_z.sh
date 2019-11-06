@@ -33,7 +33,6 @@ GPU_ID=0   # gpu id
 # command
 CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./get_encoded_z.py \
   --dataroot ./datasets/${CLASS} \
-  --results_dir ${RESULTS_DIR} \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --name ${CLASS} \
   --direction ${DIRECTION} \
