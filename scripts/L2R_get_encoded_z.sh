@@ -49,5 +49,4 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./get_encoded_z.py \
   --ndf ${NDF} \
   --center_crop \
   --no_flip \
-  --sync \
   --serial_batches
