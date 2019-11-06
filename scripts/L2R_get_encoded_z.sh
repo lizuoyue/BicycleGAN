@@ -29,11 +29,9 @@ cp ${E_PATH} ${LATEST_DIR}
 
 # misc
 GPU_ID=0   # gpu id
-NUM_TEST=64 # number of input images duirng test
-NUM_SAMPLES=10 # number of samples per input images
 
 # command
-CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test_get_encoded_z.py \
+CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./get_encoded_z.py \
   --dataroot ./datasets/${CLASS} \
   --results_dir ${RESULTS_DIR} \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
@@ -49,8 +47,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test_get_encoded_z.py \
   --ngf ${NGF} \
   --nef ${NEF} \
   --ndf ${NDF} \
-  --num_test ${NUM_TEST} \
-  --n_samples ${NUM_SAMPLES} \
   --center_crop \
   --no_flip \
   --sync \

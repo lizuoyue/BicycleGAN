@@ -1,14 +1,10 @@
 import os
-from options.test_options import TestOptions
+from options.train_options import TrainOptions
 from data import create_dataset
 from models import create_model
-from util.visualizer import save_images
-from itertools import islice
-from util import html
-
 
 # options
-opt = TestOptions().parse()
+opt = TrainOptions().parse()
 opt.num_threads = 1   # test code only supports num_threads=1
 opt.batch_size = 1   # test code only supports batch_size=1
 opt.serial_batches = True  # no shuffle
@@ -21,10 +17,10 @@ model.eval()
 print('Loading model %s' % opt.model)
 
 # test stage
-for i, data in enumerate(islice(dataset, opt.num_test)):
-    print(data)
+for i, data in enumerate(dataset):
+    print(data['A_paths'])
     model.set_input(data)
-    print('process input image %3.3d/%3.3d' % (i, opt.num_test))
+    print('process input image %3.3d/%3.3d' % (i, len(dataset)))
     continue
     if not opt.sync:
         z_samples = model.get_z_random(opt.n_samples + 1, opt.nz)
