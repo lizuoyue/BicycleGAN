@@ -63,12 +63,20 @@ if __name__=='__main__':
 		sate_rgb = torch.stack(sate_rgb).to(opt.device)
 		z_pred, _ = netE(sate_rgb)
 
-		print(z_target.shape)
-		print(z_pred.shape)
-		continue
-
 		loss = criterionL1(z_pred, z_target)
 		loss.backward()
-		optimizer_E.step()
+		print('Round %d/%d, Loss %.3lf' % (i, rounds, loss.item()))
+		optimizer.step()
+
+		checkpoint = {
+			'model_state_dict': netE.state_dict(),
+			'optimizer_state_dict': optimizer.state_dict(),
+		}
+
+		if i % 5000 == 0:
+			torch.save(checkpoint, 'sate_encoder_%d.pth' % int(i / 5000))
+			torch.save(checkpoint, 'sate_encoder_latest.pth')
+
+
 
 
