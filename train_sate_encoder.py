@@ -3,6 +3,7 @@ import torchvision
 import random
 import numpy as np
 from models import networks
+from PIL import Image
 
 class option(object):
 	def __init__(self):
