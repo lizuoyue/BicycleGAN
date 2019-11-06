@@ -49,7 +49,7 @@ if __name__=='__main__':
 	for _ in range(opt.epoch):
 		random.shuffle(idx)
 		li += idx
-	rounds = int(len(li) / opt.epoch)
+	rounds = int(len(li) / opt.batch_size)
 
 	for i in range(rounds):
 		beg = i * opt.batch_size
