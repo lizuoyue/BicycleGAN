@@ -1,6 +1,7 @@
 import torch
 import torchvision
 import random
+import numpy as np
 from models import networks
 
 class option(object):
