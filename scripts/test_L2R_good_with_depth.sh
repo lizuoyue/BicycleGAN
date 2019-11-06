@@ -11,7 +11,7 @@ CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
 # dataset
 DIRECTION="AtoB" # from domain A to domain B
 LOAD_SIZE_W=511
-LOAD_SIZE_H=256
+LOAD_SIZE_H=255
 CROP_SIZE_W=511
 CROP_SIZE_H=255
 INPUT_NC=3 # number of channels in the input image
