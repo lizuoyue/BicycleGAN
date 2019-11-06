@@ -88,7 +88,7 @@ class BiCycleGANModel(BaseModel):
     def test(self, z0=None, encode=False):
         with torch.no_grad():
             if encode:  # use encoded z
-                z0, _ = self.netE(self.real_B)
+                z0, _ = self.netE(self.real_B[..., :-1])
             if z0 is None:
                 z0 = self.get_z_random(self.real_A.size(0), self.opt.nz)
             self.fake_B = self.netG(self.real_A, z0)
