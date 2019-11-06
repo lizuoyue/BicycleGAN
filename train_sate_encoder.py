@@ -1,5 +1,5 @@
 import torch
-import networks
+from models import networks
 
 class option(object):
 	def __init__(self):
@@ -26,23 +26,19 @@ class option(object):
 
 if __name__=='__main__':
 	opt = option()
+	d = opt.
 	netE = networks.define_E(opt.output_nc, opt.nz, opt.nef, netE=opt.netE, norm=opt.norm, nl=opt.nl,
 							init_type=opt.init_type, init_gain=opt.init_gain, gpu_ids=opt.gpu_ids, vaeLike=opt.use_vae)
-	netE2 = networks.define_E(opt.output_nc, opt.nz, opt.nef, netE=opt.netE, norm=opt.norm, nl=opt.nl,
-							init_type=opt.init_type, init_gain=opt.init_gain, gpu_ids=opt.gpu_ids, vaeLike=opt.use_vae)
-	state_dict = torch.load(opt.netE_path, map_location=str(opt.device))
-	net.load_state_dict(state_dict)
 	criterionL1 = torch.nn.L1Loss()
-
-	optimizer_E2 = torch.optim.Adam(self.netE2.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
+	optimizer_E = torch.optim.Adam(self.netE.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
 
 	for item in []:
 		rgb = None
 		sate = None
 		optimizer.zero_grad()
 		z_target = netE(rgb)
-		z_pred = netE2(sate)
+		z_pred = netE(sate)
 
 		loss = criterionL1(z_pred, z_target)
 		loss.backward()
-		optimizer_E2.step()
+		optimizer_E.step()

@@ -1,9 +1,9 @@
 set -ex
 
-CLASS="L2R_with_depth"
+CLASS="L2R_good_with_depth"
 
 # models
-RESULTS_DIR="./results/L2R"
+RESULTS_DIR="./results/L2R_good_with_depth"
 G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_G.pth"
 E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_E.pth"
 CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
@@ -23,14 +23,14 @@ NEF=96
 NDF=96
 
 LATEST_DIR=${CHECKPOINTS_DIR}"/"${CLASS}
-mkdir -p ${LATEST_DIR}
-cp ${G_PATH} ${LATEST_DIR}
-cp ${E_PATH} ${LATEST_DIR}
+# mkdir -p ${LATEST_DIR}
+# cp ${G_PATH} ${LATEST_DIR}
+# cp ${E_PATH} ${LATEST_DIR}
 
 # misc
 GPU_ID=0   # gpu id
 NUM_TEST=64 # number of input images duirng test
-NUM_SAMPLES=10 # number of samples per input images
+NUM_SAMPLES=5 # number of samples per input images
 
 # command
 CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test.py \
