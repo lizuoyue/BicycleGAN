@@ -643,6 +643,7 @@ class E_ResNet(nn.Module):
 
     def forward(self, x):
         x_conv = self.conv(x)
+        print(x_conv.shape)
         conv_flat = x_conv.view(x.size(0), -1)
         output = self.fc(conv_flat)
         if self.vaeLike:
