@@ -3,6 +3,7 @@ from options.train_options import TrainOptions
 from options.test_options import TestOptions
 from data import create_dataset
 from models import create_model
+import numpy as np
 
 # options
 testOpt = TestOptions().parse()
@@ -18,11 +19,13 @@ model.setup(testOpt)
 model.eval()
 print('Loading model %s' % testOpt.model)
 
+d = {}
 # test stage
 for i, data in enumerate(dataset):
     key = os.path.basename(data['A_paths'][0]).replace('.png', '')
     model.set_input(data)
-    print(key)
     print('process input image %3.3d/%3.3d' % (i, len(dataset)))
     z, _ = model.netE(model.real_B[..., :511])
-    print(z)
+    d[key] = z.cpu().numpy()[0]
+
+np.save('encoded_z.npy', d)
