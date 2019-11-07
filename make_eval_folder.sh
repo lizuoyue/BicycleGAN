@@ -8,15 +8,15 @@ mkdir -p ${SA}
 for FILE in $(ls ./results/${DATASET}/val_sync/images/*_ground_truth.png)
 do
 	BN="$(basename -- $FILE)"
-	mv ${FILE} ${GT}"/"${BN//_ground_truth/}
+	cp ${FILE} ${GT}"/"${BN//_ground_truth/}
 done
 for FILE in $(ls ./results/${DATASET}/val_sync/images/*_encoded.png)
 do
 	BN="$(basename -- $FILE)"
-	mv ${FILE} ${EN}"/"${BN//_encoded/}
+	cp ${FILE} ${EN}"/"${BN//_encoded/}
 done
 for FILE in $(ls ./results/${DATASET}/val_sync/images/*_encoded_satellite.png)
 do
 	BN="$(basename -- $FILE)"
-	mv ${FILE} ${SA}"/"${BN//_encoded_satellite/}
+	cp ${FILE} ${SA}"/"${BN//_encoded_satellite/}
 done
