@@ -5,10 +5,10 @@ SA="./eval/encoded_sate"
 mkdir -p ${GT}
 mkdir -p ${EN}
 mkdir -p ${SA}
-for FILE in $(ls ./results/${DATASET}/val_sync/images/*_ground*.png)
+for FILE in $(ls ./results/${DATASET}/val_sync/images/*_ground_truth.png)
 do
 	BN="$(basename -- $FILE)"
-	mv ${FILE} ${GT}"/"${BN//_ground\ truth/}
+	mv ${FILE} ${GT}"/"${BN//_ground_truth/}
 done
 for FILE in $(ls ${EN})
 do
