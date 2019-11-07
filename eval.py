@@ -2,7 +2,7 @@ import tensorflow as tf
 import glob
 
 dataset = 'L2R_good_with_depth'
-for file in glob.glob('./results/%s/val_sync/images/*_ground_truth.png' % dataset):
+for file in glob.glob('results/%s/val_sync/images/*_ground_truth.png' % dataset):
 	gt = str(file)
 	en = gt.replace('_ground_truth', '_encoded')
 	sa = gt.replace('_ground_truth', '_encoded_satellite')
