@@ -61,7 +61,7 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
         real_A, fake_B, real_B = model.test(z_samples[[nn]], encode=encode)
         if nn == 0:
             images = [real_A, real_B, fake_B]
-            names = ['input', 'ground truth', 'encoded']
+            names = ['input', 'ground_truth', 'encoded']
             ###
             with torch.no_grad():
                 sate_rgb = transforms(Image.open(sate_path)).to(sateOpt.device)
