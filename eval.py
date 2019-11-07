@@ -14,6 +14,5 @@ for file in glob.glob('./results/%s/val_sync/images/*_ground_truth.png' % datase
 	ssim = tf.image.ssim(im1, im2, max_val=255)
 
 	print(psnr, ssim)
-
-	# sess = tf.Session()
-	# print(sess.run(psnr), sess.run(ssim))
+	sess = tf.Session()
+	print(sess.run(psnr), sess.run(ssim))
