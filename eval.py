@@ -10,6 +10,7 @@ ssim = tf.image.ssim(im1, im2, max_val=255)
 sess = tf.Session()
 
 dataset = 'L2R_good_with_depth'
+gts, sas = [], []
 for file in glob.glob('results/%s/val_sync/images/*_ground_truth.png' % dataset):
 	gt = str(file)
 	en = gt.replace('_ground_truth', '_encoded')
