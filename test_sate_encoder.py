@@ -53,7 +53,7 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
     model.set_input(data)
     key = os.path.basename(data['A_paths'][0]).replace('.png', '')
     sate_path = '/home/zoli/xiaohu_new_data/train2/%s_sate_rgb.png' % key
-    print('process input image %3.3d/%3.3d' % (i, opt.num_test))
+    print('process input image %3.3d/%3.3d, %s' % (i, opt.num_test, key))
     if not opt.sync:
         z_samples = model.get_z_random(opt.n_samples + 1, opt.nz)
     for nn in range(opt.n_samples + 1):
