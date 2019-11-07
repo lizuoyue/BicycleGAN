@@ -3,6 +3,8 @@ import glob
 
 dataset = 'L2R_good_with_depth'
 for file in glob.glob('./results/%s/val_sync/images/*_ground_truth.png' % dataset):
+	print(gt)
+	continue
 	gt = file
 	en = file.replace('_ground_truth', '_encoded')
 	sa = file.replace('_ground_truth', '_encoded_satellite')
