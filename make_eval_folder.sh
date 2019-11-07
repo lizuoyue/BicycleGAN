@@ -10,12 +10,12 @@ do
 	BN="$(basename -- $FILE)"
 	mv ${FILE} ${GT}"/"${BN//_ground_truth/}
 done
-for FILE in $(ls ${EN})
+for FILE in $(ls ./results/${DATASET}/val_sync/images/*_encoded.png)
 do
 	BN="$(basename -- $FILE)"
 	mv ${FILE} ${EN}"/"${BN//_encoded/}
 done
-for FILE in $(ls ${SA})
+for FILE in $(ls ./results/${DATASET}/val_sync/images/*_encoded_satellite.png)
 do
 	BN="$(basename -- $FILE)"
 	mv ${FILE} ${SA}"/"${BN//_encoded_satellite/}
