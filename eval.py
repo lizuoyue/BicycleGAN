@@ -80,20 +80,20 @@ for gt_path, key in zip(gt_paths, li):
 	# Read images from file.
 	gts.append(np.array(Image.open(gt_path)))
 	tmp = os.path.basename(gt_path).replace('_ground_truth.png', '')
-	gwd.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_encoded.png' % tmp)))
-	god.append(np.array(Image.open('./results/L2R_good_without_depth/val_sync/images/%s_encoded.png' % tmp)))
-	bwd.append(np.array(Image.open('./results/L2R_bad_with_depth/val_sync/images/%s_encoded.png' % tmp)))
+	gwd.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_encoded_satellite.png' % tmp)))
+	god.append(np.array(Image.open('./results/L2R_good_without_depth/val_sync/images/%s_encoded_satellite.png' % tmp)))
+	bwd.append(np.array(Image.open('./results/L2R_bad_with_depth/val_sync/images/%s_encoded_satellite.png' % tmp)))
 	xhs.append(np.array(Image.open('../xiaohu_new_data/predict_of_train/%s_pred_rgb.png' % key)))
 
 print('     PSNR     SSIM')
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: xhs})
-print('xhs  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
+print('xhs  %2.4lf %1.5lf' % (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: gwd})
-print('gwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
+print('gwd  %2.4lf %1.5lf' % (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: bwd})
-print('bwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
+print('bwd  %2.4lf %1.5lf' % (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: god})
-print('god  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
+print('god  %2.4lf %1.5lf' % (psnr_val.mean(), ssim_val.mean()))
 
 
 
