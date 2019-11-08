@@ -12,8 +12,8 @@ PREPROCESS='scale_width_and_crop'
 CROP_SIZE_W=256
 CROP_SIZE_H=256
 INPUT_NC=3
-NITER=200
-NITER_DECAY=200
+NITER=0
+NITER_DECAY=100
 SAVE_EPOCH=10
 NGF=96
 NEF=96
@@ -49,4 +49,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --save_epoch_freq ${SAVE_EPOCH} \
   --continue_train \
   --epoch_count 301 \
+  --lr 0.0001 \
   --use_dropout
