@@ -52,3 +52,12 @@ for item in [xh, cvpr, p2p]:
 	print('SSIM: ', ssim_val.mean())
 	print()
 
+# PSNR:  13.760339
+# SSIM:  0.3324559
+
+# PSNR:  14.285599
+# SSIM:  0.35699907
+
+# PSNR:  13.600463
+# SSIM:  0.3142436
+
