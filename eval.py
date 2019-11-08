@@ -74,37 +74,32 @@ li=['51.49461961891024,-0.12526567147165224,338.7314758300781',
 '51.52706868073723,-0.09348542480449851,241.43681335449222',
 '51.52713153741079,-0.08362327644636025,183.3238067626953']
 
-dataset = 'L2R_good_with_depth'
-gts, ens, sas, xhs = [], [], [], []
-for file, key in zip(sorted(glob.glob('results/%s/val_sync/images/*_ground_truth.png' % dataset)), li):
-	gt = str(file)
-	en = gt.replace('_ground_truth', '_encoded')
-	sa = gt.replace('_ground_truth', '_encoded_satellite')
-	xh = '../xiaohu_new_data/predict_of_train/%s_pred_rgb.png' % key
+gts, gwd, god, bwd, xhs = [[] for _ in range(5)]
+for key in li:
 	# Read images from file.
-	gts.append(np.array(Image.open(gt)))
-	ens.append(np.array(Image.open(en)))
-	sas.append(np.array(Image.open(sa)))
-	xhs.append(np.array(Image.open(xh)))
+	gts.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_ground_truth.png' % key)))
+	gwd.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_encoded.png' % key)))
+	god.append(np.array(Image.open('./results/L2R_good_without_depth/val_sync/images/%s_encoded.png' % key)))
+	bwd.append(np.array(Image.open('./results/L2R_bad_with_depth/val_sync/images/%s_encoded.png' % key)))
+	xhs.append(np.array(Image.open('../xiaohu_new_data/predict_of_train/%s_pred_rgb.png' % key)))
 
+print('     PSNR     SSIM')
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: xhs})
-print('PSNR: ', psnr_val.mean())
-print('SSIM: ', ssim_val.mean())
-print()
-psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: ens})
-print('PSNR: ', psnr_val.mean())
-print('SSIM: ', ssim_val.mean())
-print()
-psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: sas})
-print('PSNR: ', psnr_val.mean())
-print('SSIM: ', ssim_val.mean())
+print('xhs  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: gwd})
+print('gwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: bwd})
+print('bwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: god})
+print('god  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
 
-# PSNR:  14.026245
-# SSIM:  0.34329897
 
-# PSNR:  15.55651
-# SSIM:  0.357428
 
-# PSNR:  15.137144
-# SSIM:  0.3516029
+
+
+
+
+
+
+
 
