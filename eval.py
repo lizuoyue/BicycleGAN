@@ -85,13 +85,13 @@ for key in li:
 
 print('     PSNR     SSIM')
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: xhs})
-print('xhs  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+print('xhs  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: gwd})
-print('gwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+print('gwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: bwd})
-print('bwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+print('bwd  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: god})
-print('god  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean())
+print('god  %2.4lf %1.5lf', (psnr_val.mean(), ssim_val.mean()))
 
 
 
