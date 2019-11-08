@@ -25,3 +25,18 @@ for item in [xh1, xh2, xh3, cvpr, p2p]:
 	print('PSNR: ', psnr_val.mean())
 	print('SSIM: ', ssim_val.mean())
 	print()
+
+# PSNR:  13.251899
+# SSIM:  0.28161803
+
+# PSNR:  13.258847
+# SSIM:  0.24283297
+
+# PSNR:  13.6376
+# SSIM:  0.31324238
+
+# PSNR:  13.744952
+# SSIM:  0.316897
+
+# PSNR:  13.366726
+# SSIM:  0.29660797
