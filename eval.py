@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-import glob
+import os, glob
 from PIL import Image
 
 im1 = tf.placeholder(tf.uint8, [None, None, None, None])
@@ -74,13 +74,15 @@ li=['51.49461961891024,-0.12526567147165224,338.7314758300781',
 '51.52706868073723,-0.09348542480449851,241.43681335449222',
 '51.52713153741079,-0.08362327644636025,183.3238067626953']
 
+gt_paths = sorted(glob.glob('./results/L2R_good_with_depth/val_sync/images/*_ground_truth.png'))
 gts, gwd, god, bwd, xhs = [[] for _ in range(5)]
-for key in li:
+for gt_path, key in zip(gt_paths, li):
 	# Read images from file.
-	gts.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_ground_truth.png' % key)))
-	gwd.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_encoded.png' % key)))
-	god.append(np.array(Image.open('./results/L2R_good_without_depth/val_sync/images/%s_encoded.png' % key)))
-	bwd.append(np.array(Image.open('./results/L2R_bad_with_depth/val_sync/images/%s_encoded.png' % key)))
+	gts.append(np.array(Image.open(gt_path)))
+	tmp = os.path.basename(gt_path).replace('_ground_truth.png', '')
+	gwd.append(np.array(Image.open('./results/L2R_good_with_depth/val_sync/images/%s_encoded.png' % tmp)))
+	god.append(np.array(Image.open('./results/L2R_good_without_depth/val_sync/images/%s_encoded.png' % tmp)))
+	bwd.append(np.array(Image.open('./results/L2R_bad_with_depth/val_sync/images/%s_encoded.png' % tmp)))
 	xhs.append(np.array(Image.open('../xiaohu_new_data/predict_of_train/%s_pred_rgb.png' % key)))
 
 print('     PSNR     SSIM')
