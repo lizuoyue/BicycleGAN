@@ -92,7 +92,7 @@ os.popen('mkdir -p ./results/to_xiaohu/xhs/')
 os.popen('mkdir -p ./results/to_xiaohu/gts/')
 for path, li in zip(['gts', 'gwd', 'god', 'bwd', 'xhs'], [gts, gwd, god, bwd, xhs]):
 	for i, item in enumerate(li):
-		Image.fromarray(item).save('./results/to_xiaohu/gts/%s/%d.png' % (path, i))
+		Image.fromarray(item).save('./results/to_xiaohu/%s/%d.png' % (path, i))
 
 print('     PSNR     SSIM')
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: xhs})
