@@ -98,3 +98,13 @@ print()
 psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gts, im2: sas})
 print('PSNR: ', psnr_val.mean())
 print('SSIM: ', ssim_val.mean())
+
+# PSNR:  14.026245
+# SSIM:  0.34329897
+
+# PSNR:  15.55651
+# SSIM:  0.357428
+
+# PSNR:  15.137144
+# SSIM:  0.3516029
+

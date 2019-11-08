@@ -40,3 +40,15 @@ for item in [xh1, xh2, xh3, cvpr, p2p]:
 
 # PSNR:  13.366726
 # SSIM:  0.29660797
+
+p2p  = readImageList('/home/zoli/xiaohu_new_data/comp_small/p2p/*.png')
+xh   = readImageList('/home/zoli/xiaohu_new_data/comp_small/mine/*.png')
+gt   = readImageList('/home/zoli/xiaohu_new_data/comp_small/gt/*.png')
+cvpr = readImageList('/home/zoli/xiaohu_new_data/comp_small/cvpr2018/*.png')
+
+for item in [xh, cvpr, p2p]:
+	psnr_val, ssim_val = sess.run([psnr, ssim], feed_dict={im1: gt, im2: item})
+	print('PSNR: ', psnr_val.mean())
+	print('SSIM: ', ssim_val.mean())
+	print()
+
