@@ -14,7 +14,7 @@ two_dim = np.array([
 ])
 
 sem_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_street_label*.png'
-rgb_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_street_rgb.png'
+rgb_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_street_rgb*.png'
 dep_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_proj_dis*.png'
 
 sem_files = sorted(glob.glob(sem_path))
@@ -34,5 +34,5 @@ for mode in ['train']:
 		for i in range(5):
 			info[sem == i, :2] = two_dim[i]
 		bi = np.concatenate([info, rgb], 1)
-		basename = '/%s.png' % line 
+		basename = os.path.basename(rgb_file).replace('img_street_rgb', '')
 		Image.fromarray(bi).save(target + mode + basename)
