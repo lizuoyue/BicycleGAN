@@ -1,15 +1,15 @@
 set -ex
 MODEL='bicycle_gan'
 # dataset details
-CLASS='L2R_good_without_depth' # facades, day2night, edges2shoes, edges2handbags, maps
+CLASS='L2R_aug_good_with_depth' # facades, day2night, edges2shoes, edges2handbags, maps
 BATCH_SIZE=4
-NZ=32
+NZ=64
 NO_FLIP=''
 DIRECTION='AtoB'
 LOAD_SIZE_W=512
 LOAD_SIZE_H=256
 PREPROCESS='scale_width_and_crop'
-CROP_SIZE_W=256
+CROP_SIZE_W=512
 CROP_SIZE_H=256
 INPUT_NC=3
 NITER=200
@@ -47,6 +47,4 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --niter ${NITER} \
   --niter_decay ${NITER_DECAY} \
   --save_epoch_freq ${SAVE_EPOCH} \
-  --continue_train \
-  --epoch_count 301 \
   --use_dropout
