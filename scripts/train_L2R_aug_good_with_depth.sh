@@ -2,8 +2,8 @@ set -ex
 MODEL='bicycle_gan'
 # dataset details
 CLASS='L2R_aug_good_with_depth' # facades, day2night, edges2shoes, edges2handbags, maps
-BATCH_SIZE=8
-NZ=64
+BATCH_SIZE=4
+NZ=96
 NO_FLIP=''
 DIRECTION='AtoB'
 LOAD_SIZE_W=512
@@ -12,9 +12,9 @@ PREPROCESS='scale_width_and_crop'
 CROP_SIZE_W=512
 CROP_SIZE_H=256
 INPUT_NC=3
-NITER=200
-NITER_DECAY=200
-SAVE_EPOCH=10
+NITER=40
+NITER_DECAY=40
+SAVE_EPOCH=5
 NGF=96
 NEF=96
 NDF=96
