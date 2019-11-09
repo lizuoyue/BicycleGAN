@@ -13,13 +13,15 @@ two_dim = np.array([
 	[255,   0],
 ])
 
-sem_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_street_label*.png'
+sem_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_pred_sem_label_*.png'
 rgb_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_street_rgb*.png'
 dep_path = '/home/zoli/xiaohu_new_data/train_augment/train_*/*_proj_dis*.png'
 
 sem_files = sorted(glob.glob(sem_path))
 rgb_files = sorted(glob.glob(rgb_path))
 dep_files = sorted(glob.glob(dep_path))
+assert(len(sem_files) == len(rgb_files))
+assert(len(sem_files) == len(dep_files))
 
 target = '../datasets/L2R_aug_good_with_depth/'
 os.makedirs(target, exist_ok = True)
