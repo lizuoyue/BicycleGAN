@@ -642,7 +642,9 @@ class E_ResNet(nn.Module):
         self.conv = nn.Sequential(*conv_layers)
 
     def forward(self, x):
+        print(x.shape)
         x_conv = self.conv(x)
+        print(x_conv.shape)
         conv_flat = x_conv.view(x.size(0), -1)
         output = self.fc(conv_flat)
         if self.vaeLike:
