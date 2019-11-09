@@ -27,7 +27,7 @@ target = '../datasets/L2R_aug_good_with_depth/'
 os.makedirs(target, exist_ok = True)
 for mode in ['train']:
 	os.makedirs(target + mode, exist_ok = True)
-	for sem_file, rgb_file, dep_file in tqdm.tqdm(zip(sem_files, rgb_files, dep_files)):
+	for sem_file, rgb_file, dep_file in tqdm.tqdm(zip(sem_files, rgb_files, dep_files), total=len(rgb_files)):
 		sem = np.array(Image.open(sem_file).resize((512, 256), PIL.Image.BILINEAR))
 		dep = np.array(Image.open(dep_file).convert('L').resize((512, 256), PIL.Image.BILINEAR))
 		rgb = np.array(Image.open(rgb_file).resize((512, 256), PIL.Image.BILINEAR))
