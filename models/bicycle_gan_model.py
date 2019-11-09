@@ -81,6 +81,8 @@ class BiCycleGANModel(BaseModel):
         return z.to(self.device)
 
     def encode(self, input_image):
+        print(input_image.shape)
+        input()
         mu, logvar = self.netE.forward(input_image)
         std = logvar.mul(0.5).exp_()
         eps = self.get_z_random(std.size(0), std.size(1))

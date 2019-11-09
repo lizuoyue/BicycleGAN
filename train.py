@@ -41,8 +41,6 @@ if __name__ == '__main__':
             visualizer.reset()
             total_iters += opt.batch_size
             epoch_iter += opt.batch_size
-            print(data['A'].shape)
-            input()
             model.set_input(data)         # unpack data from dataset and apply preprocessing
             if not model.is_train():      # if this batch of input data is enough for training.
                 print('skip this batch')
