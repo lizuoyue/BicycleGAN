@@ -3,7 +3,7 @@ MODEL='bicycle_gan'
 # dataset details
 CLASS='L2R_aug_good_with_depth' # facades, day2night, edges2shoes, edges2handbags, maps
 BATCH_SIZE=4
-NZ=90
+NZ=96
 NO_FLIP=''
 DIRECTION='AtoB'
 LOAD_SIZE_W=512
@@ -15,9 +15,9 @@ INPUT_NC=3
 NITER=20
 NITER_DECAY=20
 SAVE_EPOCH=2
-NGF=120
-NEF=120
-NDF=120
+NGF=108
+NEF=108
+NDF=108
 
 # training
 GPU_ID=0
