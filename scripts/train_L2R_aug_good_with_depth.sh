@@ -47,4 +47,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --niter ${NITER} \
   --niter_decay ${NITER_DECAY} \
   --save_epoch_freq ${SAVE_EPOCH} \
+  --fc_input_scale 2 \
   --use_dropout

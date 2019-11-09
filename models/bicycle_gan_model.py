@@ -40,7 +40,7 @@ class BiCycleGANModel(BaseModel):
         if use_E:
             self.model_names += ['E']
             self.netE = networks.define_E(opt.output_nc, opt.nz, opt.nef, netE=opt.netE, norm=opt.norm, nl=opt.nl,
-                                          init_type=opt.init_type, init_gain=opt.init_gain, gpu_ids=self.gpu_ids, vaeLike=use_vae)
+                                          init_type=opt.init_type, init_gain=opt.init_gain, gpu_ids=self.gpu_ids, vaeLike=use_vae, fc_input_scale=opt.fc_input_scale)
 
         if opt.isTrain:
             self.criterionGAN = networks.GANLoss(gan_mode=opt.gan_mode).to(self.device)
@@ -81,8 +81,6 @@ class BiCycleGANModel(BaseModel):
         return z.to(self.device)
 
     def encode(self, input_image):
-        print(input_image.shape)
-        input()
         mu, logvar = self.netE.forward(input_image)
         std = logvar.mul(0.5).exp_()
         eps = self.get_z_random(std.size(0), std.size(1))

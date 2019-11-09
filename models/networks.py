@@ -165,17 +165,17 @@ def define_D(input_nc, ndf, netD, norm='batch', nl='lrelu', init_type='xavier', 
 
 def define_E(input_nc, output_nc, ndf, netE,
              norm='batch', nl='lrelu',
-             init_type='xavier', init_gain=0.02, gpu_ids=[], vaeLike=False):
+             init_type='xavier', init_gain=0.02, gpu_ids=[], vaeLike=False, fc_input_scale=1):
     net = None
     norm_layer = get_norm_layer(norm_type=norm)
     nl = 'lrelu'  # use leaky relu for E
     nl_layer = get_non_linearity(layer_type=nl)
     if netE == 'resnet_128':
         net = E_ResNet(input_nc, output_nc, ndf, n_blocks=4, norm_layer=norm_layer,
-                       nl_layer=nl_layer, vaeLike=vaeLike)
+                       nl_layer=nl_layer, vaeLike=vaeLike, fc_input_scale=fc_input_scale)
     elif netE == 'resnet_256':
         net = E_ResNet(input_nc, output_nc, ndf, n_blocks=5, norm_layer=norm_layer,
-                       nl_layer=nl_layer, vaeLike=vaeLike)
+                       nl_layer=nl_layer, vaeLike=vaeLike, fc_input_scale=fc_input_scale)
     elif netE == 'conv_128':
         net = E_NLayers(input_nc, output_nc, ndf, n_layers=4, norm_layer=norm_layer,
                         nl_layer=nl_layer, vaeLike=vaeLike)
@@ -642,9 +642,7 @@ class E_ResNet(nn.Module):
         self.conv = nn.Sequential(*conv_layers)
 
     def forward(self, x):
-        print(x.shape)
         x_conv = self.conv(x)
-        print(x_conv.shape)
         conv_flat = x_conv.view(x.size(0), -1)
         output = self.fc(conv_flat)
         if self.vaeLike:

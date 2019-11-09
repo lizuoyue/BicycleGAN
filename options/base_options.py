@@ -24,6 +24,7 @@ class BaseOptions():
         parser.add_argument('--crop_size_h', type=int, default=256, help='then crop to this height')
         parser.add_argument('--input_nc', type=int, default=3, help='# of input image channels')
         parser.add_argument('--output_nc', type=int, default=3, help='# of output image channels')
+        parser.add_argument('--fc_input_scale', type=int, default=1, help='# added by Zuoyue')
         parser.add_argument('--nz', type=int, default=8, help='#latent vector')
         parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2, -1 for CPU mode')
         parser.add_argument('--name', type=str, default='', help='name of the experiment. It decides where to store samples and models')
