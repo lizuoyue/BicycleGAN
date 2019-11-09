@@ -622,7 +622,7 @@ class BasicBlock(nn.Module):
 
 class E_ResNet(nn.Module):
     def __init__(self, input_nc=3, output_nc=1, ndf=64, n_blocks=4,
-                 norm_layer=None, nl_layer=None, vaeLike=False):
+                 norm_layer=None, nl_layer=None, vaeLike=False, fc_input_scale=1):
         super(E_ResNet, self).__init__()
         self.vaeLike = vaeLike
         max_ndf = 4
@@ -635,10 +635,10 @@ class E_ResNet(nn.Module):
                                        output_ndf, norm_layer, nl_layer)]
         conv_layers += [nl_layer(), nn.AvgPool2d(8)]
         if vaeLike:
-            self.fc = nn.Sequential(*[nn.Linear(output_ndf, output_nc)])
-            self.fcVar = nn.Sequential(*[nn.Linear(output_ndf, output_nc)])
+            self.fc = nn.Sequential(*[nn.Linear(output_ndf * fc_input_scale, output_nc)])
+            self.fcVar = nn.Sequential(*[nn.Linear(output_ndf * fc_input_scale, output_nc)])
         else:
-            self.fc = nn.Sequential(*[nn.Linear(output_ndf, output_nc)])
+            self.fc = nn.Sequential(*[nn.Linear(output_ndf * fc_input_scale, output_nc)])
         self.conv = nn.Sequential(*conv_layers)
 
     def forward(self, x):

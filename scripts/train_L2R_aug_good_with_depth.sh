@@ -2,7 +2,7 @@ set -ex
 MODEL='bicycle_gan'
 # dataset details
 CLASS='L2R_aug_good_with_depth' # facades, day2night, edges2shoes, edges2handbags, maps
-BATCH_SIZE=4
+BATCH_SIZE=8
 NZ=64
 NO_FLIP=''
 DIRECTION='AtoB'
