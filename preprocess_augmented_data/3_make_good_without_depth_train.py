@@ -31,5 +31,5 @@ for mode in ['train']:
 		for i in range(5):
 			info[sem == i] = two_dim[i]
 		bi = np.concatenate([info, rgb], 1)
-		basename = os.path.basename(rgb_file).replace('img_street_rgb', '')
+		basename = '/' + os.path.basename(rgb_file).replace('img_street_rgb', '')
 		Image.fromarray(bi).save(target + mode + basename)
