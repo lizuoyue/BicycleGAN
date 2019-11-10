@@ -1,7 +1,7 @@
 import torch
 from .base_model import BaseModel
 from . import networks
-
+import perceptual
 
 class BiCycleGANModel(BaseModel):
     @staticmethod
@@ -14,7 +14,7 @@ class BiCycleGANModel(BaseModel):
 
         BaseModel.__init__(self, opt)
         # specify the training losses you want to print out. The program will call base_model.get_current_losses
-        self.loss_names = ['G_GAN', 'D', 'G_GAN2', 'D2', 'G_L1', 'z_L1', 'kl']
+        self.loss_names = ['G_GAN', 'D', 'G_GAN2', 'D2', 'G_L1', 'z_L1', 'kl', 'G_P']
         # specify the images you want to save/display. The program will call base_model.get_current_visuals
         self.visual_names = ['real_A_encoded', 'real_B_encoded', 'fake_B_random', 'fake_B_encoded']
         # specify the models you want to save to the disk. The program will call base_model.save_networks and base_model.load_networks
@@ -44,6 +44,7 @@ class BiCycleGANModel(BaseModel):
 
         if opt.isTrain:
             self.criterionGAN = networks.GANLoss(gan_mode=opt.gan_mode).to(self.device)
+            self.criterionPerceptual = perceptual.PerceptualLoss(model='net-lin', net='vgg', use_gpu=use_gpu)
             self.criterionL1 = torch.nn.L1Loss()
             self.criterionZ = torch.nn.L1Loss()
             # initialize optimizers
@@ -167,7 +168,12 @@ class BiCycleGANModel(BaseModel):
         else:
             self.loss_G_L1 = 0.0
 
-        self.loss_G = self.loss_G_GAN + self.loss_G_GAN2 + self.loss_G_L1 + self.loss_kl
+        if self.opt.lambda_P > 0.0:
+            self.loss_G_P = self.criterionPerceptual.forward(self.fake_B_encoded, self.real_B_encoded, normalize=True) * self.opt.lambda_P
+        else:
+            self.loss_G_P = 0.0
+
+        self.loss_G = self.loss_G_GAN + self.loss_G_GAN2 + self.loss_G_L1 + self.loss_kl + self.loss_G_P
         self.loss_G.backward(retain_graph=True)
 
     def update_D(self):
