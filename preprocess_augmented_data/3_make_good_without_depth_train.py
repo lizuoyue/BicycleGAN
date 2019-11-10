@@ -5,14 +5,17 @@ import numpy as np
 import os
 import tqdm
 
-def expand_half_width(img):
+def expand_half_width(img, flip=False):
 	h, w, c = img.shape
 	new_w = int(w * 1.5)
 	diff = new_w - w
 	res = np.zeros((h, new_w, c), img.dtype)
 	res[:, :w, :] = img
 	res[:, w:, :] = img[:, :diff, :]
-	return res
+	if flip:
+		return np.flip(res, axis=1)
+	else:
+		return res
 
 two_dim = np.array([
 	[  0,   0, 0],
@@ -40,5 +43,10 @@ for mode in ['train']:
 		for i in range(5):
 			info[sem == i] = two_dim[i]
 		bi = np.concatenate([expand_half_width(info), expand_half_width(rgb)], 1)
-		basename = '/' + os.path.basename(rgb_file).replace('img_street_rgb_00', '')
+		basename = '/' + os.path.basename(rgb_file).replace('img_street_rgb_00', '_T')
 		Image.fromarray(bi).save(target + mode + basename)
+		bi = np.concatenate([expand_half_width(info, True), expand_half_width(rgb, True)], 1)
+		basename = '/' + os.path.basename(rgb_file).replace('img_street_rgb_00', '_F')
+		Image.fromarray(bi).save(target + mode + basename)
+
+
