@@ -9,6 +9,7 @@ import torch
 from torch.autograd import Variable
 
 from models import perceptual
+print(dir(perceptual))
 from perceptual import dist_model
 
 class PerceptualLoss(torch.nn.Module):
