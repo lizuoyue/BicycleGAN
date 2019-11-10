@@ -1,7 +1,7 @@
 import torch
 from .base_model import BaseModel
 from . import networks
-import perceptual
+from models import PerceptualLoss
 
 class BiCycleGANModel(BaseModel):
     @staticmethod
@@ -44,7 +44,7 @@ class BiCycleGANModel(BaseModel):
 
         if opt.isTrain:
             self.criterionGAN = networks.GANLoss(gan_mode=opt.gan_mode).to(self.device)
-            self.criterionPerceptual = perceptual.PerceptualLoss(model='net-lin', net='vgg', use_gpu=use_gpu)
+            self.criterionPerceptual = PerceptualLoss(model='net-lin', net='vgg', use_gpu=use_gpu)
             self.criterionL1 = torch.nn.L1Loss()
             self.criterionZ = torch.nn.L1Loss()
             # initialize optimizers
