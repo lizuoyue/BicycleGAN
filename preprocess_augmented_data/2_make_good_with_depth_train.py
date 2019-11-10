@@ -32,7 +32,7 @@ dep_files = sorted(glob.glob(dep_path))
 assert(len(sem_files) == len(rgb_files))
 assert(len(sem_files) == len(dep_files))
 
-target = '../datasets/L2R_aug_good_with_depth/'
+target = '../datasets/L2R_aug_good_with_depth_expand/'
 os.makedirs(target, exist_ok = True)
 for mode in ['train']:
 	os.makedirs(target + mode, exist_ok = True)

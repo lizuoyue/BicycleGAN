@@ -29,7 +29,7 @@ sem_files = sorted(glob.glob(sem_path))
 rgb_files = sorted(glob.glob(rgb_path))
 assert(len(sem_files) == len(rgb_files))
 
-target = '../datasets/L2R_aug_good_without_depth/'
+target = '../datasets/L2R_aug_good_without_depth_expand/'
 os.makedirs(target, exist_ok = True)
 for mode in ['train']:
 	os.makedirs(target + mode, exist_ok = True)
