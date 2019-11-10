@@ -1,7 +1,7 @@
 import torch
 from .base_model import BaseModel
 from . import networks
-from models import PerceptualLoss
+from perceptual import PerceptualLoss
 
 class BiCycleGANModel(BaseModel):
     @staticmethod
