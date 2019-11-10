@@ -54,4 +54,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test_sate_encoder.py \
   --center_crop \
   --no_flip \
   --sync \
+  --gpu_ids "-1" \
   --serial_batches
