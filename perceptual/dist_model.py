@@ -19,7 +19,7 @@ from tqdm import tqdm
 from IPython import embed
 
 from . import networks_basic as networks
-from models import perceptual as util
+import perceptual as util
 
 class DistModel(BaseModel):
     def name(self):

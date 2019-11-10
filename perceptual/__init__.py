@@ -8,8 +8,6 @@ from skimage.measure import compare_ssim
 import torch
 from torch.autograd import Variable
 
-from models import perceptual
-print(dir(perceptual.perceptual))
 from perceptual import dist_model
 
 class PerceptualLoss(torch.nn.Module):
