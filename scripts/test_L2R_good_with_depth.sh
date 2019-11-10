@@ -28,7 +28,7 @@ cp ${G_PATH} ${LATEST_DIR}
 cp ${E_PATH} ${LATEST_DIR}
 
 # misc
-GPU_ID='' # 0   # gpu id
+GPU_ID=-1 # 0   # gpu id
 NUM_TEST=64 # number of input images duirng test
 NUM_SAMPLES=10 # number of samples per input images
 
