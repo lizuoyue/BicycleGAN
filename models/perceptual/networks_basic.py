@@ -12,6 +12,7 @@ from skimage import color
 from IPython import embed
 from . import pretrained_networks as pn
 
+import models
 print(dir(models))
 import models.perceptual as util
 
