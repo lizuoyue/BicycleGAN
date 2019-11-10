@@ -12,6 +12,8 @@ from skimage import color
 from IPython import embed
 from . import pretrained_networks as pn
 
+print(sys.path)
+
 import perceptual as util
 
 def spatial_average(in_tens, keepdim=True):
