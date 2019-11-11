@@ -173,8 +173,11 @@ class BiCycleGANModel(BaseModel):
             for i in range(self.fake_B_encoded.size(0)):
                 pred = (self.fake_B_encoded[i:i+1] + 1.0) / 2.0
                 ref = (self.real_B_encoded[i:i+1] + 1.0) / 2.0
+                print(pred.dtype, ref.dtype)
+                print(torch.min(pred).item(), torch.max(pred).item())
+                print(torch.min(ref).item(), torch.max(ref).item())
                 tmp = self.criterionPerceptual.forward(pred, ref, normalize=True)
-                print(tmp)
+                print(tmp.item())
                 self.loss_G_P += tmp
             self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
 
