@@ -173,6 +173,7 @@ class BiCycleGANModel(BaseModel):
         else:
             self.loss_G_P = 0.0
 
+        print(self.loss_G_P)
         self.loss_G = self.loss_G_GAN + self.loss_G_GAN2 + self.loss_G_L1 + self.loss_kl + self.loss_G_P
         self.loss_G.backward(retain_graph=True)
 
