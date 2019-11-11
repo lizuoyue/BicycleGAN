@@ -171,7 +171,9 @@ class BiCycleGANModel(BaseModel):
         self.loss_G_P = 0.0
         if self.opt.lambda_P > 0.0:
             for i in range(self.fake_B_encoded.size(0)):
-                self.loss_G_P += self.criterionPerceptual.forward(self.fake_B_encoded[i], self.real_B_encoded[i], normalize=True)         
+                tmp = self.criterionPerceptual.forward(self.fake_B_encoded[i], self.real_B_encoded[i], normalize=True) 
+                self.loss_G_P += tmp
+                print(tmp)
             self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
 
         self.loss_G = self.loss_G_GAN + self.loss_G_GAN2 + self.loss_G_L1 + self.loss_kl + self.loss_G_P
