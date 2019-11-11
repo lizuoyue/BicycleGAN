@@ -91,8 +91,8 @@ class BiCycleGANModel(BaseModel):
     def test(self, z0=None, encode=False):
         with torch.no_grad():
             if encode:  # use encoded z
-                if self.real_B.size(3) > 511:
-                    z0, _ = self.netE(self.real_B[..., :511])
+                if self.opt.fc_input_scale == 1 and self.real_B.size(3) > 511:
+                    z0, _ = self.netE(self.real_B[..., 1:])
                 else:
                     z0, _ = self.netE(self.real_B)
             if z0 is None:
