@@ -25,7 +25,7 @@ assert(len(sem_files) == len(dep_files))
 
 target = '../datasets/L2R_aug_good_with_depth/'
 os.makedirs(target, exist_ok = True)
-for mode in ['train']:
+for mode in ['test']:
 	os.makedirs(target + mode, exist_ok = True)
 	for sem_file, rgb_file, dep_file in tqdm.tqdm(zip(sem_files, rgb_files, dep_files), total=len(rgb_files)):
 		sem = np.array(Image.open(sem_file).resize((512, 256), PIL.Image.BILINEAR))
