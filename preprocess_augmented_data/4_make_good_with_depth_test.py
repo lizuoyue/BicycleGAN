@@ -13,9 +13,9 @@ two_dim = np.array([
 	[255,   0],
 ])
 
-sem_path = '/home/zoli/xiaohu_new_data/test_augment/test_*/*_pred_sem_label_*.png'
-rgb_path = '/home/zoli/xiaohu_new_data/test_augment/test_*/*_street_rgb*.png'
-dep_path = '/home/zoli/xiaohu_new_data/test_augment/test_*/*_proj_dis*.png'
+sem_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/*_pred_sem_label_*.png'
+rgb_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/*_street_rgb*.png'
+dep_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/*_proj_dis*.png'
 
 sem_files = sorted(glob.glob(sem_path))
 rgb_files = sorted(glob.glob(rgb_path))
