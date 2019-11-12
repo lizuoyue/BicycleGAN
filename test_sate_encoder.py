@@ -63,11 +63,11 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
             images = [real_A, real_B, fake_B]
             names = ['input', 'ground_truth', 'encoded']
             ###
-            # with torch.no_grad():
-            #     sate_rgb = transforms(Image.open(sate_path)).to(sateOpt.device)
-            #     z0, _ = sateE(sate_rgb.unsqueeze(0))
-            #     images.append(model.netG(model.real_A, z0))
-            #     names.append('encoded_satellite')
+            with torch.no_grad():
+                sate_rgb = transforms(Image.open(sate_path)).to(sateOpt.device)
+                z0, _ = sateE(sate_rgb.unsqueeze(0))
+                images.append(model.netG(model.real_A, z0))
+                names.append('encoded_satellite')
             ###
         else:
             images.append(fake_B)
