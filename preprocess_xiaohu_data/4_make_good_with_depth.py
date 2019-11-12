@@ -36,5 +36,5 @@ for mode in ['val']:
 		for i in range(5):
 			info[sem == i, :2] = two_dim[i]
 		bi = np.concatenate([info, rgb], 1)
-		basename = '/%s.png' % line 
+		basename = '/%s.png' % os.path.basename(sem_path).replace('_pred_sem_label.png', '') 
 		Image.fromarray(bi).save(target + mode + basename)
