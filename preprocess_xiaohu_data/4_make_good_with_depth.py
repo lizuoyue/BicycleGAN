@@ -19,7 +19,7 @@ for mode in ['val']:
 	os.makedirs(target + mode, exist_ok = True)
 
 	sem_path = '/home/zoli/xiaohu_new_data/new_sem/*_pred_sem_label.png'
-	rgb_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/*_street_rgb.png'
+	rgb_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/*_street_rgb_00.png'
 	dep_path = '/home/zoli/xiaohu_new_data/new_sem/*_proj_depth.png'
 	sem_files = sorted(glob.glob(sem_path))
 	rgb_files = sorted(glob.glob(rgb_path))
