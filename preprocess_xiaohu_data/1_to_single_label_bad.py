@@ -13,7 +13,7 @@ colors = [
 ]
 
 for mode in ['train']:
-	dataset_dir = '/home/zoli/xiaohu_new_data/predict_of_%s' % mode
+	dataset_dir = '/home/zoli/xiaohu_new_data/new_sem'
 	files = glob.glob(dataset_dir + '/*_pred_sem.png')
 	for file in tqdm.tqdm(files):
 		img = np.array(Image.open(file)).astype(np.int32)
