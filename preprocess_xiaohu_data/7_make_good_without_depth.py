@@ -13,7 +13,7 @@ two_dim = np.array([
 	[255,   0],
 ])
 
-target = '../datasets/L2R_good_with_depth/'
+target = '../datasets/L2R_good_without_depth/'
 os.makedirs(target, exist_ok = True)
 for mode in ['val']:
 	os.makedirs(target + mode, exist_ok = True)
