@@ -32,7 +32,7 @@ for mode in ['val']:
 		dep = np.array(Image.open(rgb_file).convert('L').resize((512, 256), PIL.Image.BILINEAR))
 		rgb = np.array(Image.open(dep_file).resize((512, 256), PIL.Image.BILINEAR))
 		info = rgb.copy()
-		info[..., 2] = dep
+		info[..., 2] = 0
 		for i in range(5):
 			info[sem == i, :2] = two_dim[i]
 		bi = np.concatenate([info, rgb], 1)
