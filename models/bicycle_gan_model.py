@@ -44,7 +44,7 @@ class BiCycleGANModel(BaseModel):
 
         if opt.isTrain:
             self.criterionGAN = networks.GANLoss(gan_mode=opt.gan_mode).to(self.device)
-            self.criterionPerceptual = PerceptualLoss(model='net-lin', net='vgg', use_gpu=(-1 not in self.gpu_ids), gpu_ids=self.gpu_ids)
+            # self.criterionPerceptual = PerceptualLoss(model='net-lin', net='vgg', use_gpu=(-1 not in self.gpu_ids), gpu_ids=self.gpu_ids)
             self.criterionL1 = torch.nn.L1Loss()
             self.criterionZ = torch.nn.L1Loss()
             # initialize optimizers
@@ -169,13 +169,13 @@ class BiCycleGANModel(BaseModel):
             self.loss_G_L1 = 0.0
 
         self.loss_G_P = 0.0
-        if self.opt.lambda_P > 0.0:
-            for i in range(self.fake_B_encoded.size(0)):
-                pred = (self.fake_B_encoded[i:i+1] + 1.0) / 2.0
-                ref = (self.real_B_encoded[i:i+1] + 1.0) / 2.0
-                tmp = self.criterionPerceptual.forward(pred, ref, normalize=True)
-                self.loss_G_P += tmp
-            self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
+        # if self.opt.lambda_P > 0.0:
+        #     for i in range(self.fake_B_encoded.size(0)):
+        #         pred = (self.fake_B_encoded[i:i+1] + 1.0) / 2.0
+        #         ref = (self.real_B_encoded[i:i+1] + 1.0) / 2.0
+        #         tmp = self.criterionPerceptual.forward(pred, ref, normalize=True)
+        #         self.loss_G_P += tmp
+        #     self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
 
         self.loss_G = self.loss_G_GAN + self.loss_G_GAN2 + self.loss_G_L1 + self.loss_kl + self.loss_G_P
         self.loss_G.backward(retain_graph=True)
