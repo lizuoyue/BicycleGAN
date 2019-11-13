@@ -8,7 +8,7 @@ from PIL import Image
 class option(object):
 	def __init__(self):
 		self.output_nc = 3
-		self.nz = 32
+		self.nz = 64
 		self.nef = 96
 		self.netE = 'resnet_256'
 		self.norm = 'instance'
@@ -23,7 +23,7 @@ class option(object):
 		self.beta1 = 0.5
 		self.device = torch.device('cuda:{}'.format(self.gpu_ids[0])) if self.gpu_ids else torch.device('cpu')
 		self.batch_size = 4
-		self.epoch = 100
+		self.epoch = 30
 		return
 
 if __name__=='__main__':
@@ -38,10 +38,10 @@ if __name__=='__main__':
 		torchvision.transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 	])
 
-	d = np.load('encoded_z.npy', allow_pickle=True).item()
+	d = np.load('encoded_z_aug_expand.npy', allow_pickle=True).item()
 	names = sorted(list(d.keys()))
 	vectors = [d[name] for name in names]
-	paths = ['/home/zoli/xiaohu_new_data/train2/%s_sate_rgb.png' % name for name in names]
+	paths = ['/home/zoli/xiaohu_new_data/train_augment/train_0/%s_sate_rgb_00.png' % name for name in names]
 	idx = [i for i in range(len(names))]
 
 	random.seed(7)
@@ -74,8 +74,8 @@ if __name__=='__main__':
 		}
 
 		if i % 5000 == 0:
-			torch.save(checkpoint, './sate_encoder/sate_encoder_%d.pth' % int(i / 5000))
-			torch.save(checkpoint, './sate_encoder/sate_encoder_latest.pth')
+			torch.save(checkpoint, './sate_encoder/sate_encoder_aug_expand_%d.pth' % int(i / 5000))
+			torch.save(checkpoint, './sate_encoder/sate_encoder_aug_expand_latest.pth')
 
 
 
