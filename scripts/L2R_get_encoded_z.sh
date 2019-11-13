@@ -15,7 +15,7 @@ LOAD_SIZE_H=256
 CROP_SIZE_W=512
 CROP_SIZE_H=256
 INPUT_NC=3 # number of channels in the input image
-NZ=96
+NZ=64
 PREPROCESS="resize_and_crop"
 
 NGF=108
