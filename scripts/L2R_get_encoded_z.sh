@@ -1,9 +1,9 @@
 set -ex
 
-CLASS="L2R_good_with_depth"
+CLASS="L2R_aug_good_with_depth_expand"
 
 # models
-RESULTS_DIR="./results/L2R_good_with_depth"
+RESULTS_DIR="./results/${CLASS}"
 G_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_G.pth"
 E_PATH="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan/latest_net_E.pth"
 CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
@@ -15,12 +15,12 @@ LOAD_SIZE_H=256
 CROP_SIZE_W=512
 CROP_SIZE_H=256
 INPUT_NC=3 # number of channels in the input image
-NZ=32
+NZ=64
 PREPROCESS="resize_and_crop"
 
-NGF=96
-NEF=96
-NDF=96
+NGF=108
+NEF=108
+NDF=108
 
 LATEST_DIR=${CHECKPOINTS_DIR}"/"${CLASS}
 mkdir -p ${LATEST_DIR}
