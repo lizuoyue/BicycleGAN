@@ -44,7 +44,7 @@ for mode in ['val']:
 		info[..., 2] = dep
 		for i in range(5):
 			info[sem == i, :2] = two_dim[i]
-		bi = np.concatenate([expand_half_width(info), expand_half_width(rgb)], 1)
+		bi = np.concatenate([info, rgb], 1)
 		basename = '/' + os.path.basename(rgb_file).replace('img_street_rgb_00', '')
 		Image.fromarray(bi).save(target + mode + basename)
 
