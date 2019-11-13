@@ -9,12 +9,12 @@ DIRECTION='AtoB'
 LOAD_SIZE_W=512
 LOAD_SIZE_H=256
 PREPROCESS='scale_width_and_crop'
-CROP_SIZE_W=256
+CROP_SIZE_W=512
 CROP_SIZE_H=256
 INPUT_NC=3
-NITER=200
-NITER_DECAY=200
-SAVE_EPOCH=10
+NITER=2
+NITER_DECAY=8
+SAVE_EPOCH=1
 NGF=96
 NEF=96
 NDF=96
@@ -47,4 +47,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./train.py \
   --niter ${NITER} \
   --niter_decay ${NITER_DECAY} \
   --save_epoch_freq ${SAVE_EPOCH} \
-  --use_dropout
+  --use_dropout \
+  --continue_train \
+  --epoch_count 1
