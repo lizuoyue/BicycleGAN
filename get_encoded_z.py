@@ -23,6 +23,8 @@ d = {}
 # test stage
 for i, data in enumerate(dataset):
     key = os.path.basename(data['A_paths'][0]).replace('.png', '')
+    if not key.endswith('00'):
+    	continue
     model.set_input(data)
     print('process input image %3.3d/%3.3d' % (i, len(dataset)))
     z, _ = model.netE(model.real_B[..., :511])
