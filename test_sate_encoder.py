@@ -50,8 +50,6 @@ if opt.sync:
 
 # test stage
 for i, data in enumerate(islice(dataset, opt.num_test)):
-    data['A'] = data['A'][..., :256]
-    data['B'] = data['B'][..., :256]
     model.set_input(data)
     key = os.path.basename(data['A_paths'][0]).replace('_street_rgb_00.png', '')
     sate_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/%s_sate_rgb_00.png' % key
