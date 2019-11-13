@@ -1,6 +1,6 @@
 set -ex
 
-CLASS="L2R_aug_good_with_depth_expand"
+CLASS="L2R_aug_good_without_depth_expand"
 
 # models
 RESULTS_DIR="./results/${CLASS}"
