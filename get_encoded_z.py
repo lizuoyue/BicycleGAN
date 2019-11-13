@@ -27,7 +27,7 @@ for i, data in enumerate(dataset):
     	continue
     model.set_input(data)
     print('process input image %3.3d/%3.3d' % (i, len(dataset)))
-    z, _ = model.netE(model.real_B[..., :511])
+    z, _ = model.netE(model.real_B)
     d[key] = z.cpu().detach().numpy()[0]
 
 np.save('encoded_z_aug.npy', d)
