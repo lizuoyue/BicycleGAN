@@ -28,4 +28,4 @@ for i, data in enumerate(dataset):
     z, _ = model.netE(model.real_B[..., :511])
     d[key] = z.cpu().detach().numpy()[0]
 
-np.save('encoded_z.npy', d)
+np.save('encoded_z_%s.npy', d)
