@@ -82,10 +82,10 @@ class BiCycleGANModel(BaseModel):
         return z.to(self.device)
 
     def encode(self, input_image):
-        s = 0
+        self.s = 0
         if self.opt.fc_input_scale == 1 and input_image.size(3) > 511:
-            s = 1
-        mu, logvar = self.netE.forward(input_image[..., s:])
+            self.s = 1
+        mu, logvar = self.netE.forward(input_image[..., self.s:])
         std = logvar.mul(0.5).exp_()
         eps = self.get_z_random(std.size(0), std.size(1))
         z = eps.mul(std).add_(mu)
@@ -131,7 +131,7 @@ class BiCycleGANModel(BaseModel):
 
         # compute z_predict
         if self.opt.lambda_z > 0.0:
-            self.mu2, logvar2 = self.netE(self.fake_B_random)  # mu2 is a point estimate
+            self.mu2, logvar2 = self.netE(self.fake_B_random[..., self.s:])  # mu2 is a point estimate
 
     def backward_D(self, netD, real, fake):
         # Fake, stop backprop to the generator by detaching fake_B
