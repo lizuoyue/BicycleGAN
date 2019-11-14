@@ -42,7 +42,7 @@ if __name__=='__main__':
 	names = sorted(list(d.keys()))
 	vectors = [d[name] for name in names]
 	# paths = ['/home/zoli/xiaohu_new_data/train_augment/train_0/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
-	paths = ['./test_sate/%s_sate_rgb_00.png' % name for name in names]
+	paths = ['./test_sate/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
 	idx = [i for i in range(len(names))]
 
 	random.seed(7)
