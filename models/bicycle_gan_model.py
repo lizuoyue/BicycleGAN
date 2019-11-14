@@ -202,7 +202,10 @@ class BiCycleGANModel(BaseModel):
         #         self.loss_G_P += tmp
         #     self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
         if self.opt.lambda_P > 0.0:
-            self.loss_G_P = self.criterionL1(torch.stack(self.pred_sate[:self.half_size]), torch.stack(self.sate_rgb[:self.half_size])) * self.opt.lambda_P
+            target = torch.stack(self.sate_rgb[:self.half_size])
+            print(self.pred_sate.shape)
+            print(target.shape)
+            self.loss_G_P = self.criterionL1(self.pred_sate, target) * self.opt.lambda_P
         else:
             self.loss_G_P = 0.0
 
