@@ -38,7 +38,7 @@ if __name__=='__main__':
 		torchvision.transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 	])
 
-	d = np.load('encoded_z_aug.npy', allow_pickle=True).item()
+	d = np.load('encoded_z_L2R_good_with_depth.npy', allow_pickle=True).item()
 	names = sorted(list(d.keys()))
 	vectors = [d[name] for name in names]
 	# paths = ['/home/zoli/xiaohu_new_data/train_augment/train_0/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
