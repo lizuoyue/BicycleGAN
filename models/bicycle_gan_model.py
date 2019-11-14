@@ -1,4 +1,4 @@
-import torch
+import torch, os
 from .base_model import BaseModel
 from . import networks
 from perceptual import PerceptualLoss
