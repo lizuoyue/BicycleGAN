@@ -31,7 +31,7 @@ print('Loading model %s' % opt.model)
 sateOpt = SateOption()
 sateE = networks.define_E(sateOpt.output_nc, sateOpt.nz, sateOpt.nef, netE=sateOpt.netE, norm=sateOpt.norm, nl=sateOpt.nl,
                             init_type=sateOpt.init_type, init_gain=sateOpt.init_gain, gpu_ids=sateOpt.gpu_ids, vaeLike=sateOpt.use_vae)
-sateCheckpoint = torch.load('sate_encoder/sate_encoder_aug_expand_latest.pth')
+sateCheckpoint = torch.load('sate_encoder/sate_encoder_latest.pth')
 sateE.load_state_dict(sateCheckpoint['model_state_dict'])
 sateE.eval()
 transforms = torchvision.transforms.Compose([
@@ -52,7 +52,8 @@ if opt.sync:
 for i, data in enumerate(islice(dataset, opt.num_test)):
     model.set_input(data)
     key = os.path.basename(data['A_paths'][0]).replace('_street_rgb_00.png', '')
-    sate_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/%s_sate_rgb_00.png' % key
+    # sate_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/%s_sate_rgb_00.png' % key
+    sate_path = './test_sate/%s_sate_rgb_00.png' % key
     print('process input image %3.3d/%3.3d, %s' % (i, opt.num_test, key))
     if not opt.sync:
         z_samples = model.get_z_random(opt.n_samples + 1, opt.nz)
