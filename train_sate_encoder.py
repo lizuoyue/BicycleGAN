@@ -8,7 +8,7 @@ from PIL import Image
 class option(object):
 	def __init__(self):
 		self.output_nc = 3
-		self.nz = 32
+		self.nz = 64
 		self.nef = 96
 		self.netE = 'resnet_256'
 		self.norm = 'instance'
