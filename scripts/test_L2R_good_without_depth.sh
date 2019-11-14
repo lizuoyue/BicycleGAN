@@ -28,7 +28,7 @@ cp ${G_PATH} ${LATEST_DIR}
 cp ${E_PATH} ${LATEST_DIR}
 
 # misc
-GPU_ID=-1   # gpu id
+GPU_ID=0   # gpu id
 NUM_TEST=100 # number of input images duirng test
 NUM_SAMPLES=5 # number of samples per input images
 
@@ -54,5 +54,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test_sate_encoder.py \
   --center_crop \
   --no_flip \
   --sync \
-  --gpu_ids "-1" \
   --serial_batches
+
+
