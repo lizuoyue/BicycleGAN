@@ -154,7 +154,7 @@ class BiCycleGANModel(BaseModel):
             torch.stack(self.proj_dist[:half_size]),
             (self.fake_B_encoded[:half_size]+1)/2*255.0,
             torch.Tensor(self.ort[:half_size]),
-        0.5, 256, False)
+        0.5, 256, False).to(self.device)
 
     def backward_D(self, netD, real, fake):
         # Fake, stop backprop to the generator by detaching fake_B
@@ -202,9 +202,7 @@ class BiCycleGANModel(BaseModel):
         #         self.loss_G_P += tmp
         #     self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
         if self.opt.lambda_P > 0.0:
-            target = torch.stack(self.sate_rgb[:self.half_size])
-            print(self.pred_sate.shape)
-            print(target.shape)
+            target = torch.stack(self.sate_rgb[:self.half_size]).to(self.device)
             self.loss_G_P = self.criterionL1(self.pred_sate, target) * self.opt.lambda_P
         else:
             self.loss_G_P = 0.0
