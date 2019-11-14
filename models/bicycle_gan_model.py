@@ -82,9 +82,9 @@ class BiCycleGANModel(BaseModel):
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
         self.names = [os.path.basename(item).split('_')[0] for item in self.image_paths]
         self.ort = [float(name.split(',')[2]) for name in self.names]
-        self.proj_dist_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_proj_dis.png' % for name in self.names]
+        self.proj_dist_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_proj_dis.png' % name for name in self.names]
         self.proj_dist = [xiaohu_preprocess(file).to(self.device) for file in self.proj_dist_files]
-        self.sate_rgb_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_sate_rgb.png' % for name in self.names]
+        self.sate_rgb_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_sate_rgb.png' % name for name in self.names]
         self.sate_rgb = [torchvision.transforms.ToTensor()(io.imread(file).astype(np.float32)/255.0*2-1.0).to(self.device) for file in self.sate_rgb_files]
 
     def get_z_random(self, batch_size, nz, random_type='gauss', seed=None):
