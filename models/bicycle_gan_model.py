@@ -153,7 +153,7 @@ class BiCycleGANModel(BaseModel):
         self.pred_sate = geo_reprojection(
             torch.stack(self.proj_dist[:half_size]),
             (self.fake_B_encoded[:half_size]+1)/2*255.0,
-            torch.stack(self.ort[:half_size]),
+            torch.Tensor(self.ort[:half_size]),
         0.5, 256, False)
 
     def backward_D(self, netD, real, fake):
