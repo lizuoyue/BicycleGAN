@@ -66,7 +66,7 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
             with torch.no_grad():
                 sate_rgb = transforms(Image.open(sate_path)).to(sateOpt.device)
                 z0, _ = sateE(sate_rgb.unsqueeze(0))
-                z0 += torch.randn(opt.nz) / 2.0
+                z0 += torch.randn(opt.nz) / 4.0
                 images.append(model.netG(model.real_A, z0))
                 names.append('encoded_satellite')
             ###
