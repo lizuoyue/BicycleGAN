@@ -41,8 +41,8 @@ if __name__=='__main__':
 	d = np.load('encoded_z_L2R_good_with_depth.npy', allow_pickle=True).item()
 	names = sorted(list(d.keys()))
 	vectors = [d[name] for name in names]
-	# paths = ['/home/zoli/xiaohu_new_data/train_augment/train_0/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
-	paths = ['./test_sate/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
+	paths = ['/home/zoli/xiaohu_new_data/train_augment/train_0/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
+	# paths = ['./test_sate/%s_sate_rgb_00.png' % name.replace('_00', '') for name in names]
 	idx = [i for i in range(len(names))]
 
 	random.seed(7)
@@ -75,8 +75,8 @@ if __name__=='__main__':
 		}
 
 		if i % 5000 == 0:
-			torch.save(checkpoint, './sate_encoder/sate_encoder_%d.pth' % int(i / 5000))
-			torch.save(checkpoint, './sate_encoder/sate_encoder_latest.pth')
+			torch.save(checkpoint, './sate_encoder/sate_encoder_aug_expand_%d.pth' % int(i / 5000))
+			torch.save(checkpoint, './sate_encoder/sate_encoder_aug_expand_latest.pth')
 
 
 
