@@ -81,12 +81,12 @@ class BiCycleGANModel(BaseModel):
         self.real_A = input['A' if AtoB else 'B'].to(self.device)
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
-        self.names = [os.path.basename(item).replace('.png', '').split('_')[0] for item in self.image_paths]
-        self.ort = [float(name.split(',')[2]) for name in self.names]
-        self.proj_dist_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_proj_dis.png' % name for name in self.names]
-        self.proj_dist = [xiaohu_preprocess(file).to(self.device) for file in self.proj_dist_files]
-        self.sate_rgb_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_sate_rgb.png' % name for name in self.names]
-        self.sate_rgb = [torchvision.transforms.ToTensor()(io.imread(file).astype(np.float32)/255.0*2-1.0).to(self.device) for file in self.sate_rgb_files]
+        # self.names = [os.path.basename(item).replace('.png', '').split('_')[0] for item in self.image_paths]
+        # self.ort = [float(name.split(',')[2]) for name in self.names]
+        # self.proj_dist_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_proj_dis.png' % name for name in self.names]
+        # self.proj_dist = [xiaohu_preprocess(file).to(self.device) for file in self.proj_dist_files]
+        # self.sate_rgb_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_sate_rgb.png' % name for name in self.names]
+        # self.sate_rgb = [torchvision.transforms.ToTensor()(io.imread(file).astype(np.float32)/255.0*2-1.0).to(self.device) for file in self.sate_rgb_files]
 
     def get_z_random(self, batch_size, nz, random_type='gauss', seed=None):
         if seed is not None:
@@ -202,8 +202,9 @@ class BiCycleGANModel(BaseModel):
         #         self.loss_G_P += tmp
         #     self.loss_G_P *= (self.opt.lambda_P / self.fake_B_encoded.size(0))
         if self.opt.lambda_P > 0.0:
-            target = torch.stack(self.sate_rgb[:self.half_size]).to(self.device)
-            self.loss_G_P = self.criterionL1(self.pred_sate, target) * self.opt.lambda_P
+            # target = torch.stack(self.sate_rgb[:self.half_size]).to(self.device)
+            # self.loss_G_P = self.criterionL1(self.pred_sate, target) * self.opt.lambda_P
+            self.loss_G_P = 0.0
         else:
             self.loss_G_P = 0.0
 
