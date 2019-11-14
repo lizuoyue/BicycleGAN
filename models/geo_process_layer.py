@@ -211,9 +211,9 @@ def geo_projection(sate_depth, sate_sem, orientations, sate_gsd, pano_size, is_n
     return pano_depth, pano_sem 
 
 def geo_reprojection(pano_depth, pano_rgb, orientations, sate_gsd, sate_size, is_normalized=True):
-    print(pano_depth.shape)
-    print(pano_rgb.shape)
-    print(orientations.shape)
+    # print(pano_depth.shape)
+    # print(pano_rgb.shape)
+    # print(orientations.shape)
     # recover the real depth and color
     if is_normalized:
         pano_depth = pano_depth.mul(0.5).add(0.5).mul(116.0)
