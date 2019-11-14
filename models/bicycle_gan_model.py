@@ -150,9 +150,11 @@ class BiCycleGANModel(BaseModel):
             self.mu2, logvar2 = self.netE(self.fake_B_random[..., self.s:])  # mu2 is a point estimate
 
         self.half_size = half_size
-        self.pred_sate = []
-        for i in range(half_size):
-            self.pred_sate.append(geo_reprojection(self.proj_dist[i], (self.fake_B_encoded[i:i+1]+1)/2*255.0, self.ort[i], 0.5, 256, False))
+        self.pred_sate = geo_reprojection(
+            torch.stack(self.proj_dist[:half_size]),
+            (self.fake_B_encoded[i:i+1]+1)/2*255.0,
+            torch.stack(self.ort[:half_size]),
+        0.5, 256, False)
 
     def backward_D(self, netD, real, fake):
         # Fake, stop backprop to the generator by detaching fake_B
