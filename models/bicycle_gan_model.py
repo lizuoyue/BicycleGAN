@@ -5,6 +5,7 @@ from .base_model import BaseModel
 from . import networks
 from perceptual import PerceptualLoss
 import torchvision
+import geo_process_layer as gpl
 
 def xiaohu_preprocess(depth_file):
     sate_depth = io.imread(depth_file).astype(np.uint8)
@@ -151,7 +152,7 @@ class BiCycleGANModel(BaseModel):
         self.half_size = half_size
         self.pred_sate = []
         for i in range(half_size):
-            self.pred_sate.append(geo_reprojection(self.proj_dist[i], (self.fake_B_encoded[i:i+1]+1)/2*255.0, self.ort[i], 0.5, 256, False))
+            self.pred_sate.append(gpl.geo_reprojection(self.proj_dist[i], (self.fake_B_encoded[i:i+1]+1)/2*255.0, self.ort[i], 0.5, 256, False))
 
     def backward_D(self, netD, real, fake):
         # Fake, stop backprop to the generator by detaching fake_B
