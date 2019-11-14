@@ -1,6 +1,6 @@
 set -ex
 
-CLASS="L2R_aug_good_with_depth"
+CLASS="L2R_good_with_depth"
 
 # models
 RESULTS_DIR="./results/${CLASS}"
@@ -12,15 +12,15 @@ CHECKPOINTS_DIR="./checkpoints/"${CLASS}"/"${CLASS}"_bicycle_gan"
 DIRECTION="AtoB" # from domain A to domain B
 LOAD_SIZE_W=512
 LOAD_SIZE_H=256
-CROP_SIZE_W=512
+CROP_SIZE_W=511
 CROP_SIZE_H=256
 INPUT_NC=3 # number of channels in the input image
-NZ=96
+NZ=32
 PREPROCESS="resize_and_crop"
 
-NGF=108
-NEF=108
-NDF=108
+NGF=96
+NEF=96
+NDF=96
 
 LATEST_DIR=${CHECKPOINTS_DIR}"/"${CLASS}
 mkdir -p ${LATEST_DIR}
@@ -48,6 +48,4 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./get_encoded_z.py \
   --ndf ${NDF} \
   --center_crop \
   --no_flip \
-  --gpu_ids "-1" \
-  --fc_input_scale 2 \
   --serial_batches

@@ -31,4 +31,4 @@ for i, data in enumerate(dataset):
     print(z.shape)
     d[key] = z.cpu().detach().numpy()[0]
 
-np.save('encoded_z_aug.npy', d)
+np.save('encoded_z_%s.npy' % os.path.basename(trainOpt.dataroot), d)
