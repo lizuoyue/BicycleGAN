@@ -152,7 +152,7 @@ class BiCycleGANModel(BaseModel):
         self.half_size = half_size
         self.pred_sate = geo_reprojection(
             torch.stack(self.proj_dist[:half_size]),
-            (self.fake_B_encoded[i:i+1]+1)/2*255.0,
+            (self.fake_B_encoded[:half_size]+1)/2*255.0,
             torch.stack(self.ort[:half_size]),
         0.5, 256, False)
 
