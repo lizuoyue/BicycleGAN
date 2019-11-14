@@ -80,7 +80,7 @@ class BiCycleGANModel(BaseModel):
         self.real_A = input['A' if AtoB else 'B'].to(self.device)
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
-        self.names = [os.path.basename(item).split('_')[0] for item in self.image_paths]
+        self.names = [os.path.basename(item).replace('.png', '').split('_')[0] for item in self.image_paths]
         self.ort = [float(name.split(',')[2]) for name in self.names]
         self.proj_dist_files = ['/media/zhaopeng/data/Zuoyue/xiaohu_new_data/%s_proj_dis.png' % name for name in self.names]
         self.proj_dist = [xiaohu_preprocess(file).to(self.device) for file in self.proj_dist_files]
