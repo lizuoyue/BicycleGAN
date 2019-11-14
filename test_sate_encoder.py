@@ -51,7 +51,7 @@ if opt.sync:
 # test stage
 for i, data in enumerate(islice(dataset, opt.num_test)):
     model.set_input(data)
-    key = os.path.basename(data['A_paths'][0]).replace('_street_rgb_00.png', '')
+    key = os.path.basename(data['A_paths'][0]).replace('.png', '') # _street_rgb_00
     sate_path = '/home/zoli/xiaohu_new_data/test_augment/test_0/%s_sate_rgb_00.png' % key
     print('process input image %3.3d/%3.3d, %s' % (i, opt.num_test, key))
     if not opt.sync:
