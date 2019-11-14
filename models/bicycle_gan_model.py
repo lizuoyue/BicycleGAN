@@ -11,7 +11,7 @@ def xiaohu_preprocess(depth_file):
     sate_depth = io.imread(depth_file).astype(np.uint8)
     sate_depth = color.rgb2grey(sate_depth)[..., np.newaxis]
     sate_depth = torchvision.transforms.ToTensor()(sate_depth.astype(np.float))
-    return torch.unsqueeze(sate_depth, 0).mul(116.0)
+    return torch.unsqueeze(sate_depth).mul(116.0)
 
 class BiCycleGANModel(BaseModel):
     @staticmethod
