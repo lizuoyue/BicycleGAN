@@ -56,7 +56,6 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
     print('process input image %3.3d/%3.3d, %s' % (i, opt.num_test, key))
     if not opt.sync:
         z_samples = model.get_z_random(opt.n_samples + 1, opt.nz)
-        print(z_samples)
     for nn in range(opt.n_samples + 1):
         encode = nn == 0 and not opt.no_encode
         real_A, fake_B, real_B = model.test(z_samples[[nn]], encode=encode)
@@ -67,8 +66,7 @@ for i, data in enumerate(islice(dataset, opt.num_test)):
             with torch.no_grad():
                 sate_rgb = transforms(Image.open(sate_path)).to(sateOpt.device)
                 z0, _ = sateE(sate_rgb.unsqueeze(0))
-                z0 += torch.randn(opt.nz)
-                print(z0)
+                z0 += torch.randn(opt.nz) / 5.0
                 images.append(model.netG(model.real_A, z0))
                 names.append('encoded_satellite')
             ###
