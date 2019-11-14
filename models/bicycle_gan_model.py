@@ -71,8 +71,7 @@ class BiCycleGANModel(BaseModel):
         self.real_A = input['A' if AtoB else 'B'].to(self.device)
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
-        print(self.image_paths)
-        self.ort = float(os.path.basename(self.image_paths).split('_')[0].split(',')[2])
+        self.ort = [float(os.path.basename(item).split('_')[0].split(',')[2]) for item in self.image_paths]
 
     def get_z_random(self, batch_size, nz, random_type='gauss', seed=None):
         if seed is not None:
