@@ -30,7 +30,7 @@ cp ${E_PATH} ${LATEST_DIR}
 # misc
 GPU_ID=0   # gpu id
 NUM_TEST=100 # number of input images duirng test
-NUM_SAMPLES=5 # number of samples per input images
+NUM_SAMPLES=10 # number of samples per input images
 
 # command
 CUDA_VISIBLE_DEVICES=${GPU_ID} python3 ./test_sate_encoder.py \
