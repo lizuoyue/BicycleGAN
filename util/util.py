@@ -23,6 +23,7 @@ def tensor2im(input_image, imtype=np.uint8):
         image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 * 255.0  # post-processing: tranpose and scaling
     else:  # if it is a numpy array, do nothing
         image_numpy = input_image
+    image_numpy = np.clip(image_numpy, 0.00001, 254.99999)
     return image_numpy.astype(imtype)
 
 
