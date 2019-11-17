@@ -24,7 +24,7 @@ class BiCycleGANModel(BaseModel):
 
         BaseModel.__init__(self, opt)
         # specify the training losses you want to print out. The program will call base_model.get_current_losses
-        self.loss_names = ['G_GAN', 'D', 'G_GAN2', 'D2', 'G_L1', 'z_L1', 'kl', 'G_P']
+        self.loss_names = ['G_GAN', 'D', 'G_GAN2', 'D2', 'G_L1', 'z_L1', 'kl']
         # specify the images you want to save/display. The program will call base_model.get_current_visuals
         self.visual_names = ['real_A_encoded', 'real_B_encoded', 'fake_B_random', 'fake_B_encoded']
         # specify the models you want to save to the disk. The program will call base_model.save_networks and base_model.load_networks
@@ -149,12 +149,12 @@ class BiCycleGANModel(BaseModel):
         if self.opt.lambda_z > 0.0:
             self.mu2, logvar2 = self.netE(self.fake_B_random[..., self.s:])  # mu2 is a point estimate
 
-        self.half_size = half_size
-        self.pred_sate = geo_reprojection(
-            torch.stack(self.proj_dist[:half_size]),
-            (self.fake_B_encoded[:half_size]+1)/2*255.0,
-            torch.Tensor(self.ort[:half_size]),
-        0.5, 256, False).to(self.device)
+        # self.half_size = half_size
+        # self.pred_sate = geo_reprojection(
+        #     torch.stack(self.proj_dist[:half_size]),
+        #     (self.fake_B_encoded[:half_size]+1)/2*255.0,
+        #     torch.Tensor(self.ort[:half_size]),
+        # 0.5, 256, False).to(self.device)
 
     def backward_D(self, netD, real, fake):
         # Fake, stop backprop to the generator by detaching fake_B
