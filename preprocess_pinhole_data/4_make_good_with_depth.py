@@ -28,9 +28,9 @@ for mode in ['val']:
 	assert(len(rgb_files) == len(dep_files))
 
 	for sem_file, rgb_file, dep_file in tqdm.tqdm(list(zip(sem_files, rgb_files, dep_files))):
-		sem = np.array(Image.open(sem_file).resize((512, 256), PIL.Image.BILINEAR))
-		dep = np.array(Image.open(dep_file).convert('L').resize((512, 256), PIL.Image.BILINEAR))
-		rgb = np.array(Image.open(rgb_file).resize((512, 256), PIL.Image.BILINEAR))
+		sem = np.array(Image.open(sem_file).resize((256, 256), PIL.Image.BILINEAR))
+		dep = np.array(Image.open(dep_file).convert('L').resize((256, 256), PIL.Image.BILINEAR))
+		rgb = np.array(Image.open(rgb_file).resize((256, 256), PIL.Image.BILINEAR))
 		info = rgb.copy()
 		info[..., 2] = dep
 		for i in range(5):
